@@ -1,10 +1,14 @@
 package homework_01_03;
 
+import java.util.NoSuchElementException;
+
 public class LinkedList<T> implements List<T> {
 
 	private Node<T> head;
 	private int counter;
-
+	
+	 
+	
 	public LinkedList() {
 		head = null;
 		counter = 1;
@@ -60,11 +64,11 @@ public class LinkedList<T> implements List<T> {
 	@Override
 	public void insertAt(T item, int index) {// n
 		if (index < 0) {
-			System.out.println("Index cannot be smaller than 0");
+			throw new NegativeArraySizeException("Index cannot be smaller than 0");
 		}
 		if (index > counter) {
-			System.out.println("Too big index, putting at index : " + counter);
-			index = counter;
+			throw new IndexOutOfBoundsException("Too big index");
+			
 		}
 
 		Node<T> temp = head;
@@ -95,11 +99,10 @@ public class LinkedList<T> implements List<T> {
 	@Override
 	public void removeFrom(int index) {// n
 		if (index < 0) {
-			System.out.println("Index cannot be smaller than 0");
+			throw new NegativeArraySizeException("Index cannot be smaller than 0");
 		}
 		if (index > counter) {
-			System.out.println("Too big index, removing at index : " + counter);
-			index = counter;
+			throw new IndexOutOfBoundsException("Too big index");
 		}
 
 		Node<T> temp = head;
@@ -130,7 +133,8 @@ public class LinkedList<T> implements List<T> {
 	@Override
 	public void remove(T item) {// n
 		if (!contains(item)) {
-			System.out.println("No such element existing");
+			throw new NoSuchElementException("No such element existing");
+			
 		} else {
 			int index = 1;
 			Node<T> temp = head;
@@ -158,11 +162,10 @@ public class LinkedList<T> implements List<T> {
 	@Override
 	public T get(int index) {// n
 		if (index < 0) {
-			System.out.println("Index cannot be smaller than 0");
+			throw new NegativeArraySizeException("Index cannot be smaller than 0");
 		}
 		if (index > counter) {
-			System.out.println("Too big index, removing at index : " + counter);
-			index = counter;
+			throw new IndexOutOfBoundsException("Too big index");
 		}
 		int tempindex = 1;
 		Node<T> temp = head;
@@ -186,7 +189,7 @@ public class LinkedList<T> implements List<T> {
 		int index = 0;
 		Node<T> temp = head;
 		while (index < counter) {
-			System.out.println(temp.getData());
+			System.out.print(temp.getData()+" ");
 			temp = temp.getNext();
 			index++;
 		}
